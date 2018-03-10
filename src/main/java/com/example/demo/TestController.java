@@ -21,7 +21,7 @@ public class TestController {
         mohamad.setName("mohmad");
         Hero hoda=new Hero();
         hoda.setId(2L);
-        hoda.setName("hoda");
+        hoda.setName("mohamad");
         ArrayList<Hero> list = new ArrayList<>();
         list.add(mohamad);
         list.add(hoda);
