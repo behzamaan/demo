@@ -12,26 +12,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController()
-@RequestMapping(path="/api/heroes")
+@RequestMapping(path = "/api/heroes")
 public class TestController {
     @GetMapping(path = "")
-    public ResponseEntity<List<Hero>> init (){
-        Hero mohamad=new Hero();
+    public ResponseEntity<List<Hero>> init() {
+        Hero mohamad = new Hero();
         mohamad.setId(1L);
         mohamad.setName("mohmad");
-        Hero hoda=new Hero();
+        Hero hoda = new Hero();
         hoda.setId(2L);
         hoda.setName("mohamad");
         ArrayList<Hero> list = new ArrayList<>();
         list.add(mohamad);
         list.add(hoda);
-        return new ResponseEntity<List<Hero>>(list,HttpStatus.OK);
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
+
     @GetMapping(path = "/{id}")
-    public ResponseEntity<?> getHero(@PathVariable long id){
+    public ResponseEntity<?> getHero(@PathVariable long id) {
         System.out.println(id);
         return new ResponseEntity<>(new Hero(), HttpStatus.OK);
     }
-
-
 }
