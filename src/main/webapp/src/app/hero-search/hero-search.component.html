@@ -3,6 +3,10 @@
 
   <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
 
+
+
+  <button kendoButton (click)="search(searchBox.value)" [primary]="true">My Kendo UI Button</button>
+
   <ul class="search-result">
     <li *ngFor="let hero of heroes$ | async" >
       <a routerLink="/detail/{{hero.id}}">

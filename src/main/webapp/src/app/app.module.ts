@@ -16,12 +16,24 @@ import { HeroService }          from './hero.service';
 import { MessageService }       from './message.service';
 import { MessagesComponent }    from './messages/messages.component';
 
+// Import the Animations module
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// Import the ButtonsModule
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+
+
+
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+
+    // Register the modules
+    BrowserAnimationsModule,
+    ButtonsModule
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.

@@ -16,6 +16,11 @@ import java.util.List;
 public class TestController {
     @GetMapping(path = "")
     public ResponseEntity<List<Hero>> init() {
+        ArrayList<Hero> list = getHeroes();
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+    private ArrayList<Hero> getHeroes() {
         Hero mohamad = new Hero();
         mohamad.setId(1L);
         mohamad.setName("mohmad");
@@ -25,12 +30,12 @@ public class TestController {
         ArrayList<Hero> list = new ArrayList<>();
         list.add(mohamad);
         list.add(hoda);
-        return new ResponseEntity<>(list, HttpStatus.OK);
+        return list;
     }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> getHero(@PathVariable long id) {
         System.out.println(id);
-        return new ResponseEntity<>(new Hero(), HttpStatus.OK);
+        return new ResponseEntity<>(getHeroes().get(0), HttpStatus.OK);
     }
 }
