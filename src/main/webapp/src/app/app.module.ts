@@ -1,7 +1,7 @@
-import { NgModule }       from '@angular/core';
+import {Injectable, NgModule} from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
-import { HttpClientModule }    from '@angular/common/http';
+import {HttpClientModule, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 
 
 
@@ -22,8 +22,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Import the ButtonsModule
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import {AppService} from "./app.service";
 
 
+@Injectable()
+export class XhrInterceptor implements HttpInterceptor {
+
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    const xhr = req.clone({
+      headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')
+    });
+    return next.handle(xhr);
+  }
+}
 
 @NgModule({
   imports: [
@@ -47,9 +60,11 @@ import {MatButtonModule, MatCheckboxModule} from '@angular/material';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    LoginComponent,
+    HomeComponent
   ],
-  providers: [ HeroService, MessageService ],
+  providers: [ HeroService, MessageService,AppService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
