@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Import the ButtonsModule
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 
 
 
@@ -33,8 +34,8 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
 
     // Register the modules
     BrowserAnimationsModule,
-    ButtonsModule
-
+    ButtonsModule,
+    MatButtonModule, MatCheckboxModule
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
