@@ -55,7 +55,7 @@ public class UiApplication {
                     .authorizeRequests()
                     .antMatchers("/index.html", "/", "/home", "/login").permitAll()
                     .anyRequest().authenticated()
-                    .and()
+                    .and().formLogin().loginPage("/login.html").successForwardUrl("/").and()
                     .csrf()
                     .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
             // @formatter:on
