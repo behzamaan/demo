@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @SpringBootApplication
@@ -42,24 +43,29 @@ public class UiApplication {
         return "forward:/";
     }
 
-
-
-    @Configuration
-    @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
-    protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            // @formatter:off
-            http
-                    .httpBasic().and()
-                    .authorizeRequests()
-                    .antMatchers("/index.html", "/", "/home", "/login").permitAll()
-                    .anyRequest().authenticated()
-                    .and().formLogin().loginPage("/login.html").successForwardUrl("/").and()
-                    .csrf()
-                    .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-            // @formatter:on
-        }
+    public static void main(String[] args) {
+        SpringApplication.run(UiApplication.class, args);
     }
+//
+//    @Configuration
+//    @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+//    protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+//        @Override
+//        protected void configure(HttpSecurity http) throws Exception {
+//            // @formatter:off
+//            http
+//                    .httpBasic().and()
+//                    .authorizeRequests()
+//                    .antMatchers("/login.html").permitAll()
+//                    .anyRequest().authenticated()
+//                    .and().formLogin().loginProcessingUrl("/check")
+//                    .usernameParameter("username").passwordParameter("password").loginPage("/login.html").successForwardUrl("/")
+//                    .and()
+//                    .csrf().disable().logout().logoutUrl("/logout").clearAuthentication(true);
+//
+//
+//            // @formatter:on
+//        }
+//    }
 
 }
